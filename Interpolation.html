@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Interpolation &#8212; Elementary Computational Mathematics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Floating Point Arithmetic" href="FloatingPointArithmetic.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Elementary Computational Mathematics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="welcome.html">
+                    Welcome to Elementary Computational Mathematics!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="FloatingPointArithmetic.html">
+   Floating Point Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interpolation
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Interpolation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomial-interpolation">
+   Polynomial Interpolation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-polynomial">
+     Lagrange Polynomial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolation-error">
+     Interpolation Error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runge-s-phenomenon">
+     Runge’s Phenomenon
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chebyshev-interpolation">
+     Chebyshev Interpolation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-of-polynomial-interpolation">
+     Stability of Polynomial Interpolation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-form">
+     Newton Form
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hermite-polynomial-interpolation">
+     Hermite Polynomial Interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Interpolation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomial-interpolation">
+   Polynomial Interpolation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-polynomial">
+     Lagrange Polynomial
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolation-error">
+     Interpolation Error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runge-s-phenomenon">
+     Runge’s Phenomenon
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chebyshev-interpolation">
+     Chebyshev Interpolation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-of-polynomial-interpolation">
+     Stability of Polynomial Interpolation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-form">
+     Newton Form
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hermite-polynomial-interpolation">
+     Hermite Polynomial Interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="interpolation">
+<span id="ch-interpol"></span><h1>Interpolation<a class="headerlink" href="#interpolation" title="Permalink to this headline">#</a></h1>
+<p>The interpolation (1D) solves problems of the following type:</p>
+<blockquote>
+<div><p>Given a set of predefined functions <span class="math notranslate nohighlight">\(\mathcal{K}\)</span>, find an element <span class="math notranslate nohighlight">\(f: \mathbb{I}\mapsto \mathbb{R}\)</span> in <span class="math notranslate nohighlight">\(\mathcal{K}\)</span> such that <span class="math notranslate nohighlight">\(y_j = f(x_j)\)</span> for all <span class="math notranslate nohighlight">\(j=0,\dots, n\)</span>.</p>
+</div></blockquote>
+<p>Here <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> denotes a finite or infinite interval such that <span class="math notranslate nohighlight">\(x_1,\dots x_n\in \mathbb{I}\)</span>. One of the important applications for interpolation is Computer-Aided Design (CAD) which is used extensively in the manufacturing industry. Generally speaking, the interpolation provides a closed form of the function to determine the value of <span class="math notranslate nohighlight">\(y\)</span> where the parameter <span class="math notranslate nohighlight">\(x\)</span> is not accessible.</p>
+<section id="polynomial-interpolation">
+<h2>Polynomial Interpolation<a class="headerlink" href="#polynomial-interpolation" title="Permalink to this headline">#</a></h2>
+<p>The polynomial interpolation considers the set <span class="math notranslate nohighlight">\(\mathcal{K} = \Pi_m\)</span>, where the set <span class="math notranslate nohighlight">\(\Pi_m\)</span> represents the polynomials of with degree <span class="math notranslate nohighlight">\( \le m\)</span>. We will seek for a polynomial <span class="math notranslate nohighlight">\(f(x)\)</span> with the constraints that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{cases}
+        f\in \mathcal{K} = \Pi_n,&amp;\\
+        f(x_k) = y_k &amp;\text{ for } k = 0, 1,\dots, n.
+    \end{cases}
+\end{split}\]</div>
+<p>The points <span class="math notranslate nohighlight">\(x_k\)</span> are called <strong>interpolation nodes</strong>, if <span class="math notranslate nohighlight">\(m &gt; n\)</span> (resp. <span class="math notranslate nohighlight">\(m &lt; n\)</span>), the problem is underdetermined (resp. overdetermined). For the case that <span class="math notranslate nohighlight">\( m = n\)</span>, we have</p>
+<div class="proof theorem admonition" id="THM-INTER-UNIQ">
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>There exists a unique polynomial function <span class="math notranslate nohighlight">\(f\in \Pi_n\)</span> such that <span class="math notranslate nohighlight">\(f(x_j) = y_j\)</span> for <span class="math notranslate nohighlight">\(j=0,\dots, n\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. <strong>Existence</strong>: In order to construct the polynomial <span class="math notranslate nohighlight">\(f\)</span>, it is straightforward to consider the general form of polynomial <span class="math notranslate nohighlight">\(f(x) = \sum_{j=0}^n a_j x^j\)</span>, then we can formulate a linear system for the coefficients <span class="math notranslate nohighlight">\(a_j\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots, n\)</span>, which is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+    1 &amp; x_0 &amp; x_0^2 &amp; \dots &amp; x_0^n \\
+    1 &amp; x_1 &amp; x_1^2 &amp; \dots &amp; x_1^n \\
+    \vdots &amp; \vdots &amp;\vdots &amp; \ddots &amp; \vdots\\
+    1 &amp; x_n &amp; x_n^2 &amp; \dots &amp; x_n^n
+\end{pmatrix} \begin{pmatrix}
+    a_0\\a_1\\\vdots\\a_n
+\end{pmatrix} = \begin{pmatrix}
+    y_0\\y_1\\\vdots \\y_n
+\end{pmatrix}.
+\end{split}\]</div>
+<p>The matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+V = \begin{pmatrix}
+    1 &amp; x_0 &amp; x_0^2 &amp; \dots &amp; x_0^n \\
+    1 &amp; x_1 &amp; x_1^2 &amp; \dots &amp; x_1^n \\
+    \vdots &amp; \vdots &amp;\vdots &amp; \ddots &amp; \vdots\\
+    1 &amp; x_n &amp; x_n^2 &amp; \dots &amp; x_n^n
+\end{pmatrix} 
+\end{split}\]</div>
+<p>is called <strong>Vandermonde matrix</strong>. To determine the coefficients <span class="math notranslate nohighlight">\(a_j\)</span>, one needs the matrix <span class="math notranslate nohighlight">\(V\)</span> be invertible. Its determinant can be computed (as an exercise) as</p>
+<div class="math notranslate nohighlight">
+\[
+        \det(V) = \prod_{0\le i\le j\le n}(x_j - x_i).
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(x_j\)</span> are distinct, the determinant is nonzero.</p>
+<p><strong>Uniqueness</strong>:  Suppose there are two distinct polynomials <span class="math notranslate nohighlight">\(f, g\in \Pi_n\)</span> satisfying the condition that <span class="math notranslate nohighlight">\(f(x_j) = g(x_j) = y_j\)</span>, then <span class="math notranslate nohighlight">\(f - g\)</span> has <span class="math notranslate nohighlight">\((n+1)\)</span> roots <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j=0, \dots, n\)</span>. If <span class="math notranslate nohighlight">\(f\neq g\)</span>, it is clear that <span class="math notranslate nohighlight">\(f-g\in\Pi_n\)</span> has at most <span class="math notranslate nohighlight">\(n\)</span> roots. Contradiction.</p>
+</div>
+<p>In the above proof, the interpolation polynomial can be uniquely determined by solving the linear system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}        \begin{pmatrix}
+    1 &amp; x_0 &amp; x_0^2 &amp; \dots &amp; x_0^n \\
+    1 &amp; x_1 &amp; x_1^2 &amp; \dots &amp; x_1^n \\
+    \vdots &amp; \vdots &amp;\vdots &amp; \ddots &amp; \vdots\\
+    1 &amp; x_n &amp; x_n^2 &amp; \dots &amp; x_n^n
+\end{pmatrix} \begin{pmatrix}
+    a_0\\a_1\\\vdots\\a_n
+\end{pmatrix} = \begin{pmatrix}
+    y_0\\y_1\\\vdots \\y_n
+\end{pmatrix}.
+\end{split}\]</div>
+<p>However, it is generally easier to compute the polynomial <span class="math notranslate nohighlight">\(f\)</span> with the <strong>Lagrange polynomial interpolation</strong> (which is somewhat equivalent to compute the inverse of <span class="math notranslate nohighlight">\(V\)</span>).</p>
+<section id="lagrange-polynomial">
+<h3>Lagrange Polynomial<a class="headerlink" href="#lagrange-polynomial" title="Permalink to this headline">#</a></h3>
+<div class="proof definition admonition" id="DEF-LA-PO">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<section class="definition-content" id="proof-content">
+<p>For the given distinct <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j = 0, 1, \dots, n\)</span>, the <span class="math notranslate nohighlight">\((n+1)\)</span> Lagrange polynomials <span class="math notranslate nohighlight">\(L_0, L_1,\dots, L_n\in\Pi_n\)</span> are defined by</p>
+<div class="math notranslate nohighlight">
+\[
+    L_j(x) = \prod_{s = 0, s\neq j}^n \frac{x - x_s}{x_j - x_s}, \quad j = 0, 1,\dots , n.
+\]</div>
+</section>
+</div><p>It is clear that these polynomials satisfy the conditions that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    L_j(x_k) = \delta_{jk} := \begin{cases}
+        1&amp;\text{for } k=j,\\
+        0&amp;\text{for } k\neq j.
+    \end{cases}
+\end{split}\]</div>
+<p>Therefore these polynomials are linearly independent, which form a basis of the <span class="math notranslate nohighlight">\((n+ 1)\)</span>-dimensional space <span class="math notranslate nohighlight">\(\Pi_n\)</span>.</p>
+<div class="proof theorem admonition" id="THM-UNIQ-LAG-INTER">
+<p class="admonition-title"><span class="caption-number">Theorem 5 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The unique interpolating polynomial <span class="math notranslate nohighlight">\(f\)</span> satisfying <span class="math notranslate nohighlight">\(f(x_j) = y_j\)</span>, <span class="math notranslate nohighlight">\(j=0,1,\dots, n\)</span> can be represented by</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) = \sum_{j=0}^n y_j L_j(x).
+\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. It is straightforward to check the interpolation conditions are satisfied.</p>
+</div>
+<div class="proof remark admonition" id="remark-3">
+<p class="admonition-title"><span class="caption-number">Remark 2 </span></p>
+<section class="remark-content" id="proof-content">
+<p>We introduce a preliminary procedure to compute value of the interpolating polynomial <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(x\)</span>. Let constants <span class="math notranslate nohighlight">\(k_j\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> be defined as</p>
+<div class="math notranslate nohighlight">
+\[
+    k_j = \prod_{s= 0, s\neq j}\frac{1}{x_j - x_s},\quad q(x) = \prod_{j=0}^n (x - x_j),
+\]</div>
+<p>then</p>
+<div class="math notranslate nohighlight">
+\[\renewcommand{\cO}{\mathcal{O}}
+    f(x) = \sum_{j=0}^n y_j L_j(x) = q(x)  \sum_{j=0}^n k_j y_j \frac{1}{x - x_j}.
+\]</div>
+<p>One can first compute <span class="math notranslate nohighlight">\(k_j\)</span> with <span class="math notranslate nohighlight">\(\cO(n^2)\)</span> flops, then <span class="math notranslate nohighlight">\(f(x)\)</span> can be computed with <span class="math notranslate nohighlight">\(\cO(n)\)</span> flops. The advantage of the above scheme is the constants <span class="math notranslate nohighlight">\(k_j\)</span> are independent of <span class="math notranslate nohighlight">\(y_j\)</span>, therefore evaluating another instance of the interpolating polynomial will not need to re-compute them. The disadvantage is that if we add a new node, the constants <span class="math notranslate nohighlight">\(k_j\)</span> have to be updated with an additional cost of <span class="math notranslate nohighlight">\(\cO(n)\)</span> flops. Later we will see the Newton’s form can overcome this issue.</p>
+</section>
+</div></section>
+<section id="interpolation-error">
+<h3>Interpolation Error<a class="headerlink" href="#interpolation-error" title="Permalink to this headline">#</a></h3>
+<p>When the data pairs <span class="math notranslate nohighlight">\((x_j, y_j)\)</span>, <span class="math notranslate nohighlight">\(j=0,1,\dots, n\)</span> are generated by a sufficiently smooth function <span class="math notranslate nohighlight">\(h(x)\)</span>, it is possible to quantify the error between the interpolating polynomial <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(h(x)\)</span>.</p>
+<div class="proof theorem admonition" id="THM-INTERP-ERROR">
+<p class="admonition-title"><span class="caption-number">Theorem 6 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(h: [a, b]\mapsto \mathbb{R}\)</span> be a <span class="math notranslate nohighlight">\((n+1)\)</span>-times differentiable function. If <span class="math notranslate nohighlight">\(f(x)\in\Pi_n\)</span> is the interpolating polynomial that</p>
+<div class="math notranslate nohighlight">
+\[
+f(x_j) = h(x_j),
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(j=0,1,\dots, n\)</span>. Then for each <span class="math notranslate nohighlight">\(\overline{x}\in [a, b]\)</span>, the error can be represented by</p>
+<div class="math notranslate nohighlight">
+\[
+h(\overline{x}) - f(\overline{x}) = \frac{\omega(\overline{x})}{(n+1)!} h^{(n+1)}(\xi),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\xi = \xi(\overline{x})\in [a, b]\)</span> and <span class="math notranslate nohighlight">\(\omega(x) = \prod_{j=0}^n (x - x_j)\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The proof is based on the Rolle’s Theorem. Select any <span class="math notranslate nohighlight">\(\overline{x}\in[a, b]\)</span> such that <span class="math notranslate nohighlight">\(\omega(\overline{x})\neq 0\)</span>, then let</p>
+<div class="math notranslate nohighlight">
+\[
+\psi(x) = h(x) - f(x) - k\omega (x)
+\]</div>
+<p>the constant <span class="math notranslate nohighlight">\(k\)</span> is chosen such that <span class="math notranslate nohighlight">\(\psi(\overline{x}) = 0\)</span>. Then <span class="math notranslate nohighlight">\(\psi(x) = 0\)</span> at <span class="math notranslate nohighlight">\((n+2)\)</span> points</p>
+<div class="math notranslate nohighlight">
+\[
+x_0, x_1, \dots, x_n, \overline{x}\in [a, b]
+\]</div>
+<p>By Rolle’s Theorem, <span class="math notranslate nohighlight">\(\psi^{(n+1)}\)</span> has at least one zero <span class="math notranslate nohighlight">\(\xi\)</span> in <span class="math notranslate nohighlight">\([a,b]\)</span>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+    \psi^{(n+1)}(\xi) = h^{(n+1)}(\xi) - 0 - k(n+1)! = 0.
+\]</div>
+</div>
+<div class="proof corollary admonition" id="corollary-5">
+<p class="admonition-title"><span class="caption-number">Corollary 2 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(h(x)\in C^{\infty}([a, b])\)</span> satisfies that <span class="math notranslate nohighlight">\(\max_{x\in[a,b]} |h^{(n)}(x)|\le M &lt;\infty\)</span> for all <span class="math notranslate nohighlight">\(n\ge 0\)</span>, then the interpolating polynomial approximates <span class="math notranslate nohighlight">\(h\)</span> uniformly as the number of nodes <span class="math notranslate nohighlight">\(n\to \infty\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Since <span class="math notranslate nohighlight">\(|x -x_j|\le b-a\)</span>, the error is bounded by <span class="math notranslate nohighlight">\(\frac{(b-a)^{n+1}}{(n+1)!} M\)</span>, which converges to zero.</p>
+</div>
+<p>It is interesting to think about the converse: under what kind of condition the interpolation error is not vanishing as the number of nodes tends to infinity? From the <a class="reference internal" href="#THM-INTERP-ERROR">Theorem 6</a>, the error depends on the sizes of three terms.</p>
+<ul class="simple">
+<li><p>The bound of the <span class="math notranslate nohighlight">\((n+1)\)</span>-th derivative, <span class="math notranslate nohighlight">\(\max_{x\in[a,b]}|h^{(n+1)}(x)|\)</span>. This could grow rapidly. For instance, <span class="math notranslate nohighlight">\(h(x) = 1/\sqrt{x}\)</span> on <span class="math notranslate nohighlight">\([\frac{1}{2}, \frac{3}{2}]\)</span>,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+h^{(n+1)}(x) = \frac{(-1)^{n+1}}{2^{n+1}} (2n+1)!! x^{-(2n+3)/2}.
+\]</div>
+<ul class="simple">
+<li><p>The function <span class="math notranslate nohighlight">\(\omega(x) = \prod_{j=0}^n (x - x_j)\)</span>, such product could be large if <span class="math notranslate nohighlight">\(x\)</span> and the nodes <span class="math notranslate nohighlight">\(x_j\)</span> are not so close.</p></li>
+<li><p>The term <span class="math notranslate nohighlight">\(\frac{1}{(n+1)!}\)</span>, which decays fast.</p></li>
+</ul>
+<p>We can see that for the function <span class="math notranslate nohighlight">\(h(x) = 1/\sqrt{x}\)</span> on <span class="math notranslate nohighlight">\([\frac{1}{2}, \frac{3}{2}]\)</span>, it is not trivial to show the interpolating polynomial could converge to <span class="math notranslate nohighlight">\(h\)</span> anymore (it is still true for certain choices of <span class="math notranslate nohighlight">\(x_j\)</span>). In the following, we try to provide a better estimate of <span class="math notranslate nohighlight">\(\omega\)</span> for the special choice: equally spaced nodes.</p>
+<p>Let the nodes <span class="math notranslate nohighlight">\(x_j = a + j\Delta\)</span>, where <span class="math notranslate nohighlight">\(\Delta = \frac{b-a}{n}\)</span>. It is not difficult (prove it) to see <span class="math notranslate nohighlight">\(\omega(x)\)</span> will be the worst if <span class="math notranslate nohighlight">\(x\)</span> is located on the end sub-intervals, <span class="math notranslate nohighlight">\([x_0, x_1]\)</span> and <span class="math notranslate nohighlight">\([x_{n-1}, x_n]\)</span>. Without loss of generality, we assume <span class="math notranslate nohighlight">\(x\)</span> is located on <span class="math notranslate nohighlight">\([x_0, x_1]\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+|x - x_j|\le (j+1)\Delta
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(j = 0, 1, \dots, n\)</span>, which implies</p>
+<div class="math notranslate nohighlight">
+\[
+|\omega(x)|\le \prod_{j=0}^n |x - x_j|\le (n+1)! \Delta^{n+1} = (n+1)! \frac{(b-a)^{n+1}}{n^{n+1}},
+\]</div>
+<p>use the Stirling approximation, <span class="math notranslate nohighlight">\(n!\sim \sqrt{2\pi n} \left( \frac{n}{e}\right)^n \)</span>, thus</p>
+<div class="math notranslate nohighlight">
+\[
+(n+1)! \frac{(b-a)^{n+1}}{n^{n+1}} \sim \sqrt{2\pi n} \left(\frac{b-a}{e} \right)^{n+1}.
+\]</div>
+<p>One should note that if the interval <span class="math notranslate nohighlight">\([a, b]\)</span> is shorter than <span class="math notranslate nohighlight">\(e\)</span>, then the above estimate is exponentially small (times <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>), while it grows exponentially if <span class="math notranslate nohighlight">\(|b-a| &gt; e\)</span>. Such an estimate is useful to derive uniform convergence.</p>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Consider <span class="math notranslate nohighlight">\(h(x) = 1/x\)</span> on <span class="math notranslate nohighlight">\([\frac{1}{2}, \frac{3}{2}]\)</span>. Then <span class="math notranslate nohighlight">\(h^{(n+1)}(x) = \frac{(n+1)!(-1)^{n+1}}{x^{n+2}}\)</span>, hence</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{| h^{(n+1)}(x) |}{(n+1)!} \le \max_{x\in[1/2, 3/2]} \left| \frac{1}{x^{n+2}} \right| = 2^{n+2}
+\]</div>
+<p>and the upper bound of <span class="math notranslate nohighlight">\(|\omega|\)</span> is <span class="math notranslate nohighlight">\(\cO\left(\sqrt{n}\frac{1}{e^{n+1}}\right)\)</span>, therefore the interpolation error is <span class="math notranslate nohighlight">\(\cO\left( \sqrt{n} \left(\frac{2}{e}\right)^{n+1}\right)\)</span> converges to zero exponentially.</p>
+<p>It is important to notice that the above method only works for short intervals, if <span class="math notranslate nohighlight">\(b-a &gt; \frac{e}{2}\)</span>, then we require more sophisticated estimates.</p>
+</section>
+</div></section>
+<section id="runge-s-phenomenon">
+<h3>Runge’s Phenomenon<a class="headerlink" href="#runge-s-phenomenon" title="Permalink to this headline">#</a></h3>
+<p>From the above discussion, we can see there is a possibility that <span class="math notranslate nohighlight">\(\max_{x\in[a,b]}|h^{n+1}(x)|\omega(x)\)</span> grows faster than <span class="math notranslate nohighlight">\((n+1)!\)</span>, which would lead to divergence. Hence increasing the number of interpolation nodes (at least for equally spaced nodes) is not guaranteed for better approximation. The most famous example is the one made by Carl Runge.</p>
+<div class="math notranslate nohighlight">
+\[
+h(x) = \frac{1}{1+x^2},\quad x\in [-5, 5].
+\]</div>
+<figure class="align-default" id="fig-runge">
+<a class="reference internal image-reference" href="../../images/runge.png"><img alt="../../images/runge.png" src="../../images/runge.png" style="height: 250px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Runge’s phenomenon. Interpolation with 11 equally spaced nodes.</span><a class="headerlink" href="#fig-runge" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>It can be shown that the interpolation will diverge at around <span class="math notranslate nohighlight">\(3.6\)</span> as <span class="math notranslate nohighlight">\(n\to \infty\)</span> and the maximum error <span class="math notranslate nohighlight">\(\max_{x\in[-5, 5]} |f_n(x) - h(x) |\)</span> grows exponentially, where <span class="math notranslate nohighlight">\(f_n\)</span> is the interpolating polynomial with <span class="math notranslate nohighlight">\(n+1\)</span> equally spaced nodes.</p>
+<p>There are better choices of interpolation nodes to prevent such a phenomenon. We will discuss this topic in the next <a class="reference internal" href="#ssec-cheby"><span class="std std-ref">section</span></a>.</p>
+</section>
+<section id="chebyshev-interpolation">
+<span id="ssec-cheby"></span><h3>Chebyshev Interpolation<a class="headerlink" href="#chebyshev-interpolation" title="Permalink to this headline">#</a></h3>
+<p>The Chebyshev interpolation aims to minimize the bound of the interpolation error. The bound of <span class="math notranslate nohighlight">\(\omega(x)\)</span> only depends on the choice of the nodes, so a natural question is: what kind of interpolation nodes will minimize
+<span class="math notranslate nohighlight">\(\max_{x\in [a, b]} \prod_{j=0}^n |x-x_j|\)</span>. We first restrict our analysis to the interval <span class="math notranslate nohighlight">\([a, b] = [-1,1]\)</span> for simplicity, the general case will be discussed later.</p>
+<div class="proof example admonition" id="example-7">
+<p class="admonition-title"><span class="caption-number">Example 2 </span></p>
+<section class="example-content" id="proof-content">
+<p>When <span class="math notranslate nohighlight">\(n = 1\)</span>, <span class="math notranslate nohighlight">\(\omega(x) = (x - x_0)(x - x_1)\)</span>, this function changes sign over the sub-intervals <span class="math notranslate nohighlight">\([-1, x_0)\)</span>, <span class="math notranslate nohighlight">\((x_0, x_1)\)</span>, <span class="math notranslate nohighlight">\((x_1, 1]\)</span>, then we can compute the maximum of <span class="math notranslate nohighlight">\(|\omega(x)|\)</span> on these sub-intervals. Therefore we need to solve</p>
+<div class="math notranslate nohighlight">
+\[
+    \min_{x_0, x_1\in [-1,1]}\max((1 + x_0)(1 + x_1), \frac{(x_1-x_0)^2}{4}, (1 - x_0)(1 - x_1) ),
+\]</div>
+<p>while we can observe that</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{1}{2} (1 + x_0)(1 + x_1) +  \frac{(x_1-x_0)^2}{4} + \frac{1}{2}(1 - x_0)(1 - x_1) = 1 + \frac{(x_0 + x_1)^2}{4}\ge 1
+\]</div>
+<p>holds for any choice of <span class="math notranslate nohighlight">\(x_0, x_1\)</span>, which means the maximum is at least <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>, it occurs when all terms are equal and <span class="math notranslate nohighlight">\(x_0 + x_1 = 0\)</span>. Hence <span class="math notranslate nohighlight">\(x_0 = -\frac{\sqrt{2}}{2}, x_1 = \frac{\sqrt{2}}{2}\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span></p>
+<section class="definition-content" id="proof-content">
+<p>The Chebyshev polynomials of the first kind are defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+T_k(x) = \cos (k\arccos x),\quad x\in[-1,1].
+\]</div>
+</section>
+</div><div class="proof theorem admonition" id="theorem-9">
+<p class="admonition-title"><span class="caption-number">Theorem 7 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The Chebyshev polynomial satisfies the following:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_k(\cos\theta) = \cos k\theta, \quad \theta\in [0, \pi]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_0 \equiv 1\)</span>, <span class="math notranslate nohighlight">\(T_1(x) = x\)</span> and <span class="math notranslate nohighlight">\(T_{k+1}(x) = 2 x T_{k}(x) - T_{k-1}(x), \quad k\ge 1.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\max_{x\in[-1,1]} |T_k(x)| = 1\)</span>.</p></li>
+<li><p>The leading coefficient of <span class="math notranslate nohighlight">\(T_k(x)\)</span> is <span class="math notranslate nohighlight">\(2^{k-1}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_k\)</span> has a total of <span class="math notranslate nohighlight">\((k+1)\)</span> extrema <span class="math notranslate nohighlight">\(s_j = \cos(\frac{j\pi}{k}), j = 0, 1,\dots, n\)</span> in the interval <span class="math notranslate nohighlight">\([-1,1]\)</span> such that <span class="math notranslate nohighlight">\(T_k(s_j) = (-1)^j\)</span>.</p></li>
+</ul>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The first three statements are straightforward after replacing the variable <span class="math notranslate nohighlight">\(x = \cos\theta\)</span>. The fourth statement is an immediate result with induction through the recursion formula
+<span class="math notranslate nohighlight">\(T_{k+1}(x) = 2 x T_k(x) - T_{k-1}\)</span>. The last statement is trivial.</p>
+</div>
+<p>More importantly, the Chebyshev polynomial has the following optimality property.</p>
+<div class="proof theorem admonition" id="theorem-10">
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The optimal choice of interpolation nodes that minimize <span class="math notranslate nohighlight">\(\max |\omega(x)|\)</span> are the extrema of Chebyshev polynomial <span class="math notranslate nohighlight">\(T_{{n+1}}\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-cheby">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-cheby" title="Permalink to this equation">#</a></span>\[\min_{x_j\in[-1,1]} \max_{x\in[-1,1]} |\omega(x)| =   \max_{x\in[-1,1]} \frac{1}{2^n}|T_{n+1}(x)|  = \frac{1}{2^n}\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Let the roots of <span class="math notranslate nohighlight">\(T_{n+1}(x)\)</span> be <span class="math notranslate nohighlight">\(z_0, z_1, \dots, z_{n}\in [-1, 1]\)</span>, then we can write</p>
+<div class="math notranslate nohighlight">
+\[T_{n+1} = 2^{n}(x - z_0)(x-z_1)\dots (x - z_{n})\]</div>
+<p>therefore <span class="math notranslate nohighlight">\(\frac{1}{2^n} T_{n+1}(x)\)</span> is a polynomial with leading coefficient as <span class="math notranslate nohighlight">\(1\)</span>. Since <span class="math notranslate nohighlight">\(\max_{x\in[-1,1]} |T_{n+1}(x)| = 1\)</span>, it is clear that <span class="math notranslate nohighlight">\(\max_{x\in [-1,1]} \frac{1}{2^n}|T_{n+1}(x)| = \frac{1}{2^n}\)</span>, which is the second equality in <a class="reference internal" href="#equation-eq-cheby">(1)</a>. For the first equality, we try to prove by contradiction. Let <span class="math notranslate nohighlight">\(x_0, x_1, \dots, x_n\in [-1, 1]\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[\max_{x\in[-1,1]}|\omega(x)| &lt; \frac{1}{2^n},\]</div>
+<p>then we define the polynomial <span class="math notranslate nohighlight">\(\psi(x) = \frac{1}{2^n}T_{n+1}(x)- \omega(x)\)</span>, its degree is at most <span class="math notranslate nohighlight">\(n\)</span> due to cancellation, therefore at most have <span class="math notranslate nohighlight">\(n\)</span> zeros. On the other hand, because <span class="math notranslate nohighlight">\(\frac{1}{2^n}T_{n+1}(s_j) = \frac{1}{2^n}(-1)^j\)</span> at the extrema <span class="math notranslate nohighlight">\(s_j = \cos(\frac{j\pi}{n+1})\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots, (n+1)\)</span>, the polynomial <span class="math notranslate nohighlight">\(\psi(s_j)\)</span> must share the same sign of <span class="math notranslate nohighlight">\(\frac{1}{2^n}T_{n+1}(s_j)\)</span>. This means <span class="math notranslate nohighlight">\(\psi(x)\)</span> changes sign <span class="math notranslate nohighlight">\((n+1)\)</span> times, hence <span class="math notranslate nohighlight">\((n+1)\)</span> zeros. It is a contradiction.</p>
+</div>
+<div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span></p>
+<section class="definition-content" id="proof-content">
+<p>The interpolation nodes <span class="math notranslate nohighlight">\(z_j = \cos(\frac{(2j+1)\pi}{2(n+1)})\)</span>, <span class="math notranslate nohighlight">\(j = 0, 1, \dots, n\)</span> are called <strong>Chebyshev nodes</strong>. These nodes are the zeros of Chebyshev polynomial <span class="math notranslate nohighlight">\(T_{n+1}\)</span>.</p>
+</section>
+</div><p>Now we can generalize the above theorem to interval <span class="math notranslate nohighlight">\([a, b]\)</span>. One can defined the affine transformation <span class="math notranslate nohighlight">\(\phi\)</span> mapping <span class="math notranslate nohighlight">\([-1,1]\)</span> to <span class="math notranslate nohighlight">\([a, b]\)</span> by <span class="math notranslate nohighlight">\(\phi(x) = \frac{1}{2} (a + b + (b-a)x)\)</span>. It is not difficult to prove the following.</p>
+<div class="proof corollary admonition" id="COR-CHEBY">
+<p class="admonition-title"><span class="caption-number">Corollary 3 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>The optimal choice of interpolation nodes that minimize <span class="math notranslate nohighlight">\(\max |\omega(x)|\)</span> on <span class="math notranslate nohighlight">\([a, b]\)</span> are <span class="math notranslate nohighlight">\(\phi(z_j)\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[\renewcommand{\eps}{\varepsilon}
+\min_{x_j\in [a, b]} \max_{x\in [a, b]} |\omega(x)| = \frac{(b-a)^{n+1}}{2\cdot 4^n}.
+\]</div>
+<p>This bound is much smaller than the bound for equally spaced nodes.</p>
+</section>
+</div></section>
+<section id="stability-of-polynomial-interpolation">
+<span id="ssec-stability-poly"></span><h3>Stability of Polynomial Interpolation<a class="headerlink" href="#stability-of-polynomial-interpolation" title="Permalink to this headline">#</a></h3>
+<p>Suppose there is some perturbation of the data <span class="math notranslate nohighlight">\(\tilde{y}_j = y_j + \eps_j\)</span> at the interpolation node <span class="math notranslate nohighlight">\(x_j\)</span>. Let <span class="math notranslate nohighlight">\(\tilde{f}_n(x)\)</span> and <span class="math notranslate nohighlight">\(f_n(x)\)</span> be the interpolating polynomials on perturbed data and original data. Then with Lagrange polynomials,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|f_n(x) - \tilde{f_n}(x)| &amp;= |\sum_{j=0}^n (y_j - \tilde{y}_j) L_j(x)| \\
+&amp;\le \left(\max_{j} |\eps_j|\right) \sum_{j=0}^n |L_j(x)|.
+\end{aligned}
+\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\lambda_n(x) := \sum_{j=0}^n |L_j(x)|\)</span> is the <strong>Lebesgue function</strong>. It is a piecewise defined polynomial. Its maximum <span class="math notranslate nohighlight">\(\Lambda_n\)</span> is the <strong>Lebesgue constant</strong> and it only depends on the choice of interpolation nodes. For the equally spaced nodes, this Lebesgue constant grows exponentially,</p>
+<div class="math notranslate nohighlight">
+\[
+\Lambda_{n, equal} \sim \frac{2^{n+1}}{en \log n}.
+\]</div>
+<p>For the general case, it has been proved by Paul Erdos (1964) that there exists a constant <span class="math notranslate nohighlight">\(C &gt; 0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+    \Lambda_n &gt; \frac{2}{\pi}\log(n+1) - C,\quad  n\ge 0,
+\]</div>
+<p>As the number of nodes <span class="math notranslate nohighlight">\(n\to \infty\)</span>, <span class="math notranslate nohighlight">\(\Lambda_n \to \infty\)</span>. This leads to the result of Faber that for any choice of nodes, there exists a continuous function not able to be approximated by the interpolating polynomial. The Chebyshev nodes are almost optimal in the sense that</p>
+<div class="math notranslate nohighlight">
+\[
+\Lambda_{n, Chebyshev} &lt; \frac{2}{\pi}\log(n+1) + 1.
+\]</div>
+<p>The set of nodes that minimize <span class="math notranslate nohighlight">\(\Lambda_n\)</span> is difficult to compute. A slightly better set of nodes than Chebyshev nodes is the <strong>extended Chebyshev nodes</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{x}_j = \frac{\cos\left(\frac{2j+1}{2(n+1)\pi}\right)}{\cos\left(\frac{\pi}{2(n+1)}\right)}.
+\]</div>
+</section>
+<section id="newton-form">
+<span id="ssec-ne-fo"></span><h3>Newton Form<a class="headerlink" href="#newton-form" title="Permalink to this headline">#</a></h3>
+<p>The Newton form is useful when we dynamically add interpolation nodes. Consider the following scenario: we already have found an interpolation polynomial <span class="math notranslate nohighlight">\(f_k\)</span> through <span class="math notranslate nohighlight">\((x_0, y_0)\)</span>, <span class="math notranslate nohighlight">\((x_1, y_1)\)</span>,<span class="math notranslate nohighlight">\(\dots, (x_k, y_k)\)</span>, then we are provided an addition pair <span class="math notranslate nohighlight">\((x_{k+1}, y_{k+1})\)</span>, how to effectively transform <span class="math notranslate nohighlight">\(f_k\)</span> to <span class="math notranslate nohighlight">\(f_{k+1}\)</span>? If we write</p>
+<div class="math notranslate nohighlight">
+\[
+f_{k+1}(x) = f_k(x) + c_{k+1} (x - x_0)(x - x_1)\dots (x - x_{k}), 
+\]</div>
+<p>then <span class="math notranslate nohighlight">\(f_{k+1}(x_j) = f_k(x_j)\)</span>, <span class="math notranslate nohighlight">\(j = 0, 1,\dots, k\)</span>, automatically. Therefore we only need to take care of <span class="math notranslate nohighlight">\(f_{k+1}(x_{k+1}) = y_{k+1}\)</span>, which means</p>
+<div class="math notranslate nohighlight" id="equation-eq-ck">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-ck" title="Permalink to this equation">#</a></span>\[c_{k+1} = \frac{y_{k+1} - f_k(x_{k+1})}{\prod_{j=0}^k (x_{k+1} - x_j)}.\]</div>
+<p>Such an inductive procedure produces the Newton form:</p>
+<div class="math notranslate nohighlight" id="equation-eq-newton">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-newton" title="Permalink to this equation">#</a></span>\[f_n(x) = c_0 + c_1 ( x - x_0) + c_2 (x - x_0)(x - x_1)+\dots+c_{n}(x-x_0)\dots (x - x_{n-1}).\]</div>
+<p>where the constant <span class="math notranslate nohighlight">\(c_j\)</span> depends on <span class="math notranslate nohighlight">\(x_0, x_1, \dots, x_{j}\)</span> only. The polynomials <span class="math notranslate nohighlight">\(\prod_{j=0}^k (x - x_j)\)</span> are called <strong>Newton polynomials</strong>. When the coefficients <span class="math notranslate nohighlight">\(c_k\)</span> are known, the Newton form <a class="reference internal" href="#equation-eq-newton">(6)</a> can be evaluated by the famous <strong>Horner’s scheme</strong>, which is</p>
+<div class="math notranslate nohighlight" id="equation-eq-horner">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-horner" title="Permalink to this equation">#</a></span>\[    f_n(x) = c_0 + (x-x_0)(c_1 + (x-x_1)(c_2 + (x-x_2)(c_3 + \dots))),\]</div>
+<p>the evaluation order starts from the innermost part <span class="math notranslate nohighlight">\(c_n (x -x_{n-1})\)</span>. This formulation has a complexity of <span class="math notranslate nohighlight">\(3n\)</span> flops.</p>
+<div class="proof remark admonition" id="remark-13">
+<p class="admonition-title"><span class="caption-number">Remark 3 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The computation of <span class="math notranslate nohighlight">\(c_k\)</span> is not cheap from <a class="reference internal" href="#equation-eq-ck">(2)</a>. A naive algorithm with Horner’s scheme roughly takes <span class="math notranslate nohighlight">\(5n^2/2+\cO(n)\)</span> flops to compute all coefficients. The <strong>divided differences</strong> is a better way to compute <span class="math notranslate nohighlight">\(c_k\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Let the interpolation nodes be <span class="math notranslate nohighlight">\(\{x_0, x_1, \dots, x_n\}\)</span>, the <strong>divided differences</strong> are defined recursively as follows (the square bracket is used to distinguish from the usual bracket):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+        f[x_j] &amp;:= f(x_j),\\
+    f[x_{j}, \dots, x_{j+k}] &amp;:= \frac{f[x_{j+1},\dots, x_{j+k}] - f[x_j,\dots, x_{j+k-1}]}{x_{j+k} - x_{j}},
+    \end{aligned}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(0\le j, k\le n\)</span> and <span class="math notranslate nohighlight">\(j+k\le n\)</span>.</p>
+</section>
+</div><p>The following example graph is helpful to understand the relationships among the divided differences.</p>
+<div class="math notranslate nohighlight" id="equation-eq-alg-newton">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-alg-newton" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    f[x_0] &amp;               &amp;\\ 
+            &amp;\searrow       &amp;\\ 
+    f[x_1] &amp;\to f[x_0, x_1]&amp; \\
+            &amp;\searrow        &amp;\searrow&amp;\\ 
+    f[x_2] &amp; \to f[x_1, x_2]&amp;\to&amp; f[x_0, x_1, x_2]\\
+            &amp;\searrow        &amp;\searrow&amp; &amp;\searrow&amp;\\ 
+    f[x_3] &amp;\to f[x_2, x_3] &amp;\to&amp; f[x_1, x_2, x_3] &amp;\to &amp; f[x_0, x_1, x_2, x_3]\\
+            &amp;\searrow        &amp;\searrow &amp; &amp;\searrow&amp;  &amp;\searrow &amp;\\ 
+    f[x_4] &amp; \to f[x_3, x_4]&amp;\to&amp; f[x_2, x_3, x_4] &amp;\to &amp; f[x_1, x_2, x_3, x_4] &amp;\to&amp;  f[x_0, x_1, x_2, x_3, x_4] 
+\end{aligned}\end{split}\]</div>
+<p>It is clear that computing all of the divided differences requires <span class="math notranslate nohighlight">\(\frac{3n^2}{2} +\cO(n)\)</span> flops. The following theorem is the main statement for the Newton form.</p>
+<div class="proof theorem admonition" id="theorem-15">
+<p class="admonition-title"><span class="caption-number">Theorem 9 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The interpolation polynomial <span class="math notranslate nohighlight">\(f_n\)</span> in Newton form is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-newton">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-newton" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{aligned}
+    f_n(x) =\; &amp;f[x_0] + f[x_0, x_1](x-x_0) + \dots +\\
+             &amp; f[x_0, \dots, x_n](x - x_0)(x - x_1)\dots (x - x_{n-1}).
+\end{aligned}\end{split}\]</div>
+<p>In other words, <span class="math notranslate nohighlight">\(c_k = f[x_0, \dots, x_k]\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We prove this by induction. Assume the statement is true for <span class="math notranslate nohighlight">\(n\)</span> and interpolation node and corresponding values <span class="math notranslate nohighlight">\((x_0, f[x_0]), (x_1, f[x_1]), \dots, (x_n, f[x_n])\)</span>. For a new node and value <span class="math notranslate nohighlight">\((x_{n+1}, f[x_{n+1}])\)</span>, it is known from <a class="reference internal" href="#equation-eq-ck">(2)</a> that <span class="math notranslate nohighlight">\(c_{n+1}\)</span> is the coefficient of leading power. Let <span class="math notranslate nohighlight">\(g_n\)</span> be the interpolation polynomial in Newton form through nodes <span class="math notranslate nohighlight">\((x_1, f[x_1]), \dots, (x_{n+1}, f[x_{n+1}])\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\psi(x)  := g_n(x)(x - x_0) - f_n(x)(x - x_{n+1})
+\]</div>
+<p>satisfies that <span class="math notranslate nohighlight">\(\psi(x_j) = f[x_j](x_{n+1} - x_0)\)</span> for <span class="math notranslate nohighlight">\(0\le j\le {n+1}\)</span>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+f_{n+1}(x) = \frac{g_n(x)(x - x_0) - f_n(x)(x - x_{n+1})}{x_{n+1} - x_0}
+\]</div>
+<p>The leading power’s coefficient is then</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{f[x_1, \dots, x_{n+1}] - f[x_0, \dots, x_n]}{x_{n+1} - x_0} = f[x_0, x_1,\dots, x_{n+1}].
+\]</div>
+</div>
+<div class="proof remark admonition" id="remark-16">
+<p class="admonition-title"><span class="caption-number">Remark 4 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The divided difference <span class="math notranslate nohighlight">\(f[x_j, \dots, x_{j+k}]\)</span> is the coefficient of leading power of the interpolating polynomial through <span class="math notranslate nohighlight">\((x_j, f[x_j]), \dots, (x_{j+k}, f[x_{j+k}])\)</span>. It can be shown that</p>
+<div class="math notranslate nohighlight">
+\[
+f[x_j, \dots, x_{j+k}] = \frac{1}{k!}f^{(k)}(\xi)
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(\xi\in [a, b]\)</span>. See exercise.</p>
+</section>
+</div><div class="proof remark admonition" id="remark-17">
+<p class="admonition-title"><span class="caption-number">Remark 5 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The error estimate can be derived as</p>
+<div class="math notranslate nohighlight">
+\[
+    f(x) - f_n(x) = f[x_0, x_1, \dots, x_n, x] (x-x_0)\dots (x - x_n).
+\]</div>
+</section>
+</div><div class="proof remark admonition" id="remark-18">
+<p class="admonition-title"><span class="caption-number">Remark 6 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The Newton form <a class="reference internal" href="#equation-eq-newton">(6)</a> actually does not require distinct nodes. The divided difference can be defined as a limit for repeated nodes:</p>
+<div class="math notranslate nohighlight">
+\[
+    f[x_0, x_0] = \lim_{x_1 \to x_0} \frac{f[x_1] - f[x_0]}{x_1 - x_0} = f'(x_0).
+\]</div>
+<p>Moreover, using Taylor expansion, <span class="math notranslate nohighlight">\(f[\underbrace{x_0,\dots, x_0}_{(k+1)\,\text{times}}] = \frac{1}{k!}f^{(k)}(x_0)\)</span>. However, in such case the divided differences are not possible to be computed if the derivative values are not provided. We will discuss this scenario later in Hermite interpolation polynomial.</p>
+</section>
+</div><div class="proof remark admonition" id="remark-19">
+<p class="admonition-title"><span class="caption-number">Remark 7 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The algorithm to compute the divided difference can be made more efficient with a single column to store the diagonal elements. <span class="math notranslate nohighlight">\(\leadsto\)</span> is representing the number is not changing.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\color{red}{f[x_0]} &amp;    \leadsto  \color{green}{f[x_0]}          &amp; \leadsto&amp; \color{cyan}{f[x_0]} &amp;\leadsto&amp; \color{blue}{f[x_0]} &amp;\leadsto&amp; \color{black}{f[x_0]}\\ 
+&amp;\searrow       &amp;\\ 
+\color{red}{f[x_1]} &amp;\to \color{green}{f[x_0, x_1]}&amp;  \leadsto&amp; \color{cyan}{f[x_0, x_1]}  &amp;\leadsto&amp; \color{blue}{f[x_0, x_1]} &amp;\leadsto&amp; \color{black}{f[x_0, x_1]}\\
+&amp;\searrow        &amp;\searrow&amp;\\ 
+\color{red}{f[x_2]} &amp; \to \color{green}{f[x_1, x_2]}&amp;\to&amp; \color{cyan}{f[x_0, x_1, x_2]} &amp;\leadsto&amp; \color{blue}{f[x_0, x_1, x_2]}&amp;\leadsto&amp; \color{black}{f[x_0, x_1, x_2]}\\
+&amp;\searrow        &amp;\searrow&amp; &amp;\searrow&amp;\\ 
+\color{red}{f[x_3]} &amp;\to \color{green}{f[x_2, x_3] }&amp;\to&amp; \color{cyan}{f[x_1, x_2, x_3]} &amp;\to &amp; \color{blue}{f[x_0, x_1, x_2, x_3]}&amp;\leadsto&amp; \color{black}{f[x_0, x_1, x_2, x_3]}\\
+&amp;\searrow        &amp;\searrow &amp; &amp;\searrow&amp;  &amp;\searrow &amp;\\ 
+\color{red}{f[x_4]} &amp; \to \color{green}{f[x_3, x_4]}&amp;\to&amp; \color{cyan}{f[x_2, x_3, x_4]} &amp;\to &amp; \color{blue}{f[x_1, x_2, x_3, x_4]} &amp;\to&amp;  f[x_0, x_1, x_2, x_3, x_4] 
+\end{aligned}
+\end{split}\]</div>
+</section>
+</div></section>
+<section id="hermite-polynomial-interpolation">
+<span id="ssec-he-po-in"></span><h3>Hermite Polynomial Interpolation<a class="headerlink" href="#hermite-polynomial-interpolation" title="Permalink to this headline">#</a></h3>
+<p>The Lagrange polynomial interpolation only requires the values of the data function <span class="math notranslate nohighlight">\(h\)</span> at each node. It can be generalized when the derivative values of <span class="math notranslate nohighlight">\(h\)</span> are also available.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="FloatingPointArithmetic.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Floating Point Arithmetic</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Yimin Zhong<br/>
+  
+      &copy; Copyright 2022. CC BY-NC-SA 4.0.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
