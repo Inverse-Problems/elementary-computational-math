@@ -230,7 +230,7 @@
 # h(x) = \frac{1}{1+x^2},\quad x\in [-5, 5].
 # $$
 # 
-# ```{figure} ../../images/runge.png
+# ```{figure} https://github.com/Inverse-Problems/elementary-computational-math/blob/main/images/runge.png
 # ---
 # height: 250px
 # name: FIG-RUNGE
