@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Computational Inverse Problems" href="CompInverseProblems.html" />
     <link rel="prev" title="Floating Point Arithmetic" href="FloatingPointArithmetic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -121,7 +122,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Chapters
+  Preliminaries
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -133,6 +134,18 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Interpolation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Chapters
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="CompInverseProblems.html">
+   Computational Inverse Problems
   </a>
  </li>
 </ul>
@@ -309,6 +322,33 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trigonometric-interpolation">
+   Trigonometric Interpolation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fourier-series">
+     Fourier Series
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-fourier-transform">
+     Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolation-error-of-trigonometric-polynomial">
+     Interpolation Error of Trigonometric Polynomial
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spline-interpolation">
+   Spline Interpolation
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -369,6 +409,33 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trigonometric-interpolation">
+   Trigonometric Interpolation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fourier-series">
+     Fourier Series
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-fourier-transform">
+     Fast Fourier Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolation-error-of-trigonometric-polynomial">
+     Interpolation Error of Trigonometric Polynomial
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spline-interpolation">
+   Spline Interpolation
+  </a>
  </li>
 </ul>
 
@@ -590,7 +657,7 @@ h^{(n+1)}(x) = \frac{(-1)^{n+1}}{2^{n+1}} (2n+1)!! x^{-(2n+3)/2}.
 h(x) = \frac{1}{1+x^2},\quad x\in [-5, 5].
 \]</div>
 <figure class="align-default" id="fig-runge">
-<a class="reference internal image-reference" href="images/runge.png"><img alt="images/runge.png" src="images/runge.png" style="height: 250px;" /></a>
+<a class="reference internal image-reference" href="_images/runge.png"><img alt="_images/runge.png" src="_images/runge.png" style="height: 250px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Runge’s phenomenon. Interpolation with 11 equally spaced nodes.</span><a class="headerlink" href="#fig-runge" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -691,7 +758,7 @@ T_k(x) = \cos (k\arccos x),\quad x\in[-1,1].
 \[
 \Lambda_{n, equal} \sim \frac{2^{n+1}}{en \log n}.
 \]</div>
-<p>For the general case, it has been proved by Paul Erdos (1964) that there exists a constant <span class="math notranslate nohighlight">\(C &gt; 0\)</span></p>
+<p>For the general case, it has been proved by Paul Erdös (1964) that there exists a constant <span class="math notranslate nohighlight">\(C &gt; 0\)</span></p>
 <div class="math notranslate nohighlight">
 \[
     \Lambda_n &gt; \frac{2}{\pi}\log(n+1) - C,\quad  n\ge 0,
@@ -836,7 +903,236 @@ f[x_j, \dots, x_{j+k}] = \frac{1}{k!}f^{(k)}(\xi)
 <section id="hermite-polynomial-interpolation">
 <span id="ssec-he-po-in"></span><h3>Hermite Polynomial Interpolation<a class="headerlink" href="#hermite-polynomial-interpolation" title="Permalink to this headline">#</a></h3>
 <p>The Lagrange polynomial interpolation only requires the values of the data function <span class="math notranslate nohighlight">\(h\)</span> at each node. It can be generalized when the derivative values of <span class="math notranslate nohighlight">\(h\)</span> are also available.</p>
+<p>Let the tuple <span class="math notranslate nohighlight">\((h(x_j), h^{(1)}(x_j), \dots, h^{(m_j)}(x_j))\)</span> be the provided derivative values at the interpolation node <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots, n\)</span> and <span class="math notranslate nohighlight">\(m_j\ge 0\)</span>. <span class="math notranslate nohighlight">\(N = \sum_{j=0}^n (m_j + 1)\)</span> is the total number of constraints. It can be shown that there exists a unique polynomial <span class="math notranslate nohighlight">\(H_{N-1}\in \Pi_{N-1}\)</span> satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+H_{N-1}^{(k)}(x_j) = y_j^k:= h^{(k)}(x_j),\quad j=0,\dots, n,\quad 0\le k\le m_j.
+\]</div>
+<p>This polynomial is called <strong>Hermite interpolation polynomial</strong>. The idea to construct the Hermite interpolation polynomial borrows from the Lagrange polynomials, which is to find basis <span class="math notranslate nohighlight">\(L_{jk}\)</span> such that</p>
+<div class="math notranslate nohighlight" id="equation-eq-hermite-construction">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-hermite-construction" title="Permalink to this equation">#</a></span>\[\begin{split}    \frac{d^p}{d x^p}L_{jk}(x_l) = \begin{cases}
+        1, &amp; l = j, k = p\\
+        0, &amp; \text{otherwise}.
+    \end{cases}\end{split}\]</div>
+<p>Once these polynomials are obtained, the Hermite interpolation is straightforward:</p>
+<div class="math notranslate nohighlight">
+\[H_{N-1}(x) = \sum_{j=0}^n \sum_{k=0}^{m_j} y_j^k L_{jk}(x).\]</div>
+<p>Its uniqueness can be concluded from the linearly independence of the basis <span class="math notranslate nohighlight">\(L_{jk}\)</span>. However, the construction method in <a class="reference internal" href="#equation-eq-hermite-construction">(7)</a> is not the simplest. It is known that the Newton form <a class="reference internal" href="#equation-eq-newton">(6)</a> works for repeated nodes as long as the diagram’s diagonal <a class="reference internal" href="#equation-eq-alg-newton">(5)</a> can be filled. Therefore, we can arrange the nodes</p>
+<div class="math notranslate nohighlight">
+\[
+\underbrace{x_0,\dots, x_0}_{(m_0+1)\,\text{times}}, \quad \underbrace{x_1,\dots, x_1}_{(m_1+1)\,\text{times}}, \quad \dots,\quad  \underbrace{x_n,\dots, x_n}_{(m_n+1)\,\text{times}}
+\]</div>
+<p>In this way, all of the necessary divided differences can be computed. See exercise.</p>
+<div class="proof remark admonition" id="remark-20">
+<p class="admonition-title"><span class="caption-number">Remark 8 </span></p>
+<section class="remark-content" id="proof-content">
+<p>The error estimate for Hermite polynomial interpolation will be the same as the Newton form case.</p>
 </section>
+</div></section>
+</section>
+<section id="trigonometric-interpolation">
+<h2>Trigonometric Interpolation<a class="headerlink" href="#trigonometric-interpolation" title="Permalink to this headline">#</a></h2>
+<p>Periodic functions occur in many applications, that is, <span class="math notranslate nohighlight">\(f(x + T) = f(x)\)</span>, <span class="math notranslate nohighlight">\(x\in \mathbb{R}\)</span> for some <span class="math notranslate nohighlight">\(T &gt; 0\)</span>. For example, a closed planar curve can be parameterized as a periodic function naturally. The polynomial interpolation does not suit periodic functions, this is because polynomials will eventually go to infinity as <span class="math notranslate nohighlight">\(x\to\infty\)</span>. The most used interpolation for the periodic function is the \emph{trigonometric polynomial interpolation}. In the following, we assume the period <span class="math notranslate nohighlight">\(T = 2\pi\)</span> without loss of generality.</p>
+<section id="fourier-series">
+<h3>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">#</a></h3>
+<div class="proof definition admonition" id="definition-21">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span></p>
+<section class="definition-content" id="proof-content">
+<p>For <span class="math notranslate nohighlight">\(n\ge 0\)</span>, we defined <span class="math notranslate nohighlight">\(F_n\)</span> the space of trigonometric polynomials</p>
+<div class="math notranslate nohighlight">
+\[
+    F_n := \{f(x) \mid f(x) = \frac{a_0}{2} + \sum_{k=1}^n a_k \cos kx + \sum_{k=1}^n b_k \sin kx,\; a_k, b_k\in\mathbb{R}\}.
+\]</div>
+<p>The coefficients <span class="math notranslate nohighlight">\(a_0,\dots, a_n\)</span>, <span class="math notranslate nohighlight">\(b_1,\dots, b_n\)</span> can be also chosen as complex numbers. <span class="math notranslate nohighlight">\(f\in F_n\)</span> is said to be of degree <span class="math notranslate nohighlight">\(n\)</span> if <span class="math notranslate nohighlight">\(|a_n| + |b_n| &gt; 0\)</span>.</p>
+</section>
+</div><p>The concept of <strong>degree</strong> here can be validated by the addition theorem of trigonometric functions. For instance, if <span class="math notranslate nohighlight">\(f_1\in F_k\)</span>, <span class="math notranslate nohighlight">\(f_2\in F_l\)</span>, then <span class="math notranslate nohighlight">\(f_1 f_2 \in F_{k+l}\)</span>. In the next, we discuss the uniqueness of the interpolation with the trigonometric polynomial.</p>
+<div class="proof lemma admonition" id="lemma-22">
+<p class="admonition-title"><span class="caption-number">Lemma 2 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>A trigonometric polynomial <span class="math notranslate nohighlight">\(f\in F_n\)</span> that has more than <span class="math notranslate nohighlight">\(2n\)</span> zeros in <span class="math notranslate nohighlight">\([0, 2\pi)\)</span> must vanish identically.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Rewrite the trigonometric function in the form of</p>
+<div class="math notranslate nohighlight" id="equation-eq-complex">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq-complex" title="Permalink to this equation">#</a></span>\[    f_n(x) = \sum_{k=-n}^{n} \gamma_k e^{ik x}. \]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma_0 = \frac{1}{2}a_0\)</span> and <span class="math notranslate nohighlight">\(\gamma_{k} = \frac{1}{2}(a_k - ib_k)\)</span> and <span class="math notranslate nohighlight">\(\gamma_{-k} = \frac{1}{2}(a_k + i b_k)\)</span>, <span class="math notranslate nohighlight">\(k=1,\dots, n\)</span>. Then substitute <span class="math notranslate nohighlight">\(z = e^{ix}\)</span> and set</p>
+<div class="math notranslate nohighlight">
+\[
+    p(z) = \sum_{k = -n}^n \gamma_k z^{n + k}, 
+\]</div>
+<p>one can rewrite <span class="math notranslate nohighlight">\(f_n(x) = z^{-n} p(z)\)</span>. If <span class="math notranslate nohighlight">\(f_n(x)\)</span> has more than <span class="math notranslate nohighlight">\(2n\)</span> zeros, then <span class="math notranslate nohighlight">\(p(z)\)</span> has more than <span class="math notranslate nohighlight">\(2n\)</span> zeros, which is a contradiction since <span class="math notranslate nohighlight">\(p(z)\)</span> is a polynomial of degree <span class="math notranslate nohighlight">\(2n\)</span>.</p>
+</div>
+<div class="proof remark admonition" id="remark-23">
+<p class="admonition-title"><span class="caption-number">Remark 9 </span></p>
+<section class="remark-content" id="proof-content">
+<p>Since <span class="math notranslate nohighlight">\(\sin nx\in F_n\)</span> has <span class="math notranslate nohighlight">\(2n\)</span> zeros <span class="math notranslate nohighlight">\(\frac{\pi j}{n}\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots, 2n-1\)</span>, it means to uniquely determine a trigonometric polynomial in <span class="math notranslate nohighlight">\(F_n\)</span>, exactly <span class="math notranslate nohighlight">\(2n+1\)</span> values are needed. This is also known as the Nyquist sampling theorem.</p>
+</section>
+</div><p>A direct corollary is the linear independence of the functions <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(\cos k x\)</span> and <span class="math notranslate nohighlight">\(\sin k x\)</span>, <span class="math notranslate nohighlight">\(k = 1, \dots n\)</span>, these <span class="math notranslate nohighlight">\((2n+1)\)</span> functions form a natural basis for the trigonometric polynomial space <span class="math notranslate nohighlight">\(F_n\)</span>.</p>
+<div class="proof corollary admonition" id="corollary-24">
+<p class="admonition-title"><span class="caption-number">Corollary 4 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>The functions <span class="math notranslate nohighlight">\(1, \cos kx, \sin kx\)</span>, <span class="math notranslate nohighlight">\(k=1,\dots, n\)</span> are linearly independent on <span class="math notranslate nohighlight">\(C([0, 2\pi])\)</span>, hence <span class="math notranslate nohighlight">\(F_n\)</span> is a <span class="math notranslate nohighlight">\((2n+1)\)</span> dimensional space.</p>
+</section>
+</div><p>To determine the coefficients <span class="math notranslate nohighlight">\(a_k, b_k\)</span> from <span class="math notranslate nohighlight">\((2n+1)\)</span> data paris <span class="math notranslate nohighlight">\((x_j, y_j)\)</span>, <span class="math notranslate nohighlight">\(j=0, \dots, 2n\)</span>. We simply follow the idea of Lagrange polynomials by creating the basis polynomial <span class="math notranslate nohighlight">\(l_k(x)\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+l_k(x_j) = \begin{cases}
+    1, &amp;j = k,\\
+    0,&amp;\text{otherwise}.
+\end{cases} 
+\end{split}\]</div>
+<div class="proof remark admonition" id="remark-25">
+<p class="admonition-title"><span class="caption-number">Remark 10 </span></p>
+<section class="remark-content" id="proof-content">
+<p>A natural idea is replace <span class="math notranslate nohighlight">\(x - x_j\)</span> in the Lagrange basis by <span class="math notranslate nohighlight">\(\sin(x - x_j)\)</span> and produce something like</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{j=0, j\neq k}^{2n}\frac{\sin(x - x_j)}{\sin(x_k - x_j)},
+\]</div>
+<p>but <span class="math notranslate nohighlight">\(\sin(x - x_j)\)</span> has two roots on <span class="math notranslate nohighlight">\([0, 2\pi)\)</span>, therefore we need to rescale it to <span class="math notranslate nohighlight">\([0, \pi)\)</span>.</p>
+</section>
+</div><div class="proof theorem admonition" id="THM-TRIG">
+<p class="admonition-title"><span class="caption-number">Theorem 10 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let the basis trigonometric polynomial</p>
+<div class="math notranslate nohighlight">
+\[
+l_k(x) =\prod_{j=0, j\neq k}^{2n}\frac{\sin(\frac{x - x_j}{2})}{\sin(\frac{x_k - x_j}{2})} ,
+\]</div>
+<p>then the interpolation trigonometric polynomial is</p>
+<div class="math notranslate nohighlight">
+\[
+f_n(x) = \sum_{k=0}^{2n} y_k l_k(x).
+\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. It remains to show <span class="math notranslate nohighlight">\(l_k\in F_n\)</span>. This can be seen by splitting <span class="math notranslate nohighlight">\(l_k\)</span> into <span class="math notranslate nohighlight">\(n\)</span> pairs, each pair takes the form of</p>
+<div class="math notranslate nohighlight">
+\[
+    \sin(\frac{x-x_0}{2})\sin(\frac{x-x_1}{2}) = \frac{1}{2}\cos\left( \frac{x_0 - x_1}{2}\right) - \frac{1}{2}\cos\left(\frac{2x - x_0 - x_1}{2}\right)\in F_1.
+\]</div>
+</div>
+<p>Computationally, we can reuse the previously known barycentric form but there exist better methods. For simplicity, we consider the equal space nodes in the following (non-uniform nodes could achieve the same complexity though).</p>
+<div class="math notranslate nohighlight">
+\[
+    x_j = \frac{2\pi j}{2n + 1}, \quad j = 0, \dots, 2n. 
+\]</div>
+<p>We will try to locate the coefficients <span class="math notranslate nohighlight">\(\gamma_k\)</span> in the complex form (see <a class="reference internal" href="#equation-eq-complex">(8)</a>) from the interpolation conditions.</p>
+<div class="math notranslate nohighlight">
+\[
+    f_n(x_j) = y_j = \sum_{k=-n}^n \gamma_k e^{i k x_j}.
+\]</div>
+<p>Use the property of the functions <span class="math notranslate nohighlight">\(e^{ikx_j}\)</span> that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \sum_{k=0}^{2n} e^{ik x_j} = \begin{cases}
+        2n+1, &amp; k = 0\\
+        0, &amp;\text{otherwise}.
+    \end{cases}
+\end{split}\]</div>
+<p>It is not difficult to derive</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_{j = 0}^{2n} y_j e^{-im x_j} = \sum_{k=-n}^{n} \gamma_k \sum_{j=0}^{2n} e^{i (k - m) x_j} = \gamma_{m} (2n+1).  
+\]</div>
+<p>Therefore, we can compute</p>
+<div class="math notranslate nohighlight" id="equation-eq-gamma">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-gamma" title="Permalink to this equation">#</a></span>\[    \gamma_m = \frac{1}{2n+1}  \sum_{j = 0}^{2n} y_j e^{-im x_j}.\]</div>
+<p>When the coefficients <span class="math notranslate nohighlight">\(\gamma_m\)</span> are known, a Horner’s scheme can be employed to evaluate the trigonometric polynomial in <span class="math notranslate nohighlight">\(\cO(n)\)</span> time complexity.  However, naive computing of all of the coefficients <span class="math notranslate nohighlight">\(\gamma_k\)</span> will cost <span class="math notranslate nohighlight">\(\cO(n^2)\)</span> flops. The fast Fourier transform can reduce the time complexity to <span class="math notranslate nohighlight">\(\cO(n\log n)\)</span>.</p>
+</section>
+<section id="fast-fourier-transform">
+<h3>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Permalink to this headline">#</a></h3>
+<p>The discrete Fourier transform <span class="math notranslate nohighlight">\(\texttt{DFT}\)</span> of a vector <span class="math notranslate nohighlight">\(\mathbf{a} = (a_0, \dots, a_{n-1})\)</span> is to evaluate the following vector:</p>
+<div class="math notranslate nohighlight">
+\[
+\texttt{DFT}(\mathbf{a})_{k} := \frac{1}{n}\sum_{j=0}^{n-1} a_je^{-2\pi i jk/n},\quad k = 0,\dots, n-1.
+\]</div>
+<p>This is the exact formula to compute the coefficients for the trigonometric interpolation polynomial. Such transform is most efficiently calculated through the fast Fourier transform (<span class="math notranslate nohighlight">\(\texttt{fft}\)</span>).
+The fast Fourier transform exploits the symmetry in <span class="math notranslate nohighlight">\(e^{2\pi i j/n}\)</span> when <span class="math notranslate nohighlight">\(n\)</span> is the power of two using divide-and-conquer. Let <span class="math notranslate nohighlight">\(\omega = e^{-2\pi i/n}\)</span> and <span class="math notranslate nohighlight">\(c_k\)</span> be</p>
+<div class="math notranslate nohighlight">
+\[
+    c_k = \frac{1}{n}\sum_{j=0}^{n-1} y_j\omega^{jk},\quad k = 0,\dots, n-1.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(m = n/2\in \mathbb{N}\)</span>, then <span class="math notranslate nohighlight">\(\omega^n = 1\)</span>, <span class="math notranslate nohighlight">\(\omega^m = -1\)</span>. We can separate <span class="math notranslate nohighlight">\(c_k\)</span> into two parts with even <span class="math notranslate nohighlight">\(j\)</span> and odd <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-ck2">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-ck2" title="Permalink to this equation">#</a></span>\[    c_k = \frac{1}{2} A_k + \frac{1}{2} B_k \omega^k,\quad c_{k+m} = \frac{1}{2} A_k - \frac{1}{2} B_k \omega^k \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-eq-ak-bk">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-ak-bk" title="Permalink to this equation">#</a></span>\[\begin{aligned}
+    A_k = \frac{1}{m} \sum_{j=0}^{m-1} y_{2j} (\omega^2)^{jk},\quad B_k = \frac{1}{m} \sum_{j=0}^{m-1} y_{2j+1} (\omega^2)^{jk},
+\end{aligned}\]</div>
+<p>both <span class="math notranslate nohighlight">\(A_k\)</span> and <span class="math notranslate nohighlight">\(B_k\)</span> are in the same form and similar to <span class="math notranslate nohighlight">\(c_k\)</span>, but with only half of the terms in summation. This implies a recursive algorithm. Suppose <span class="math notranslate nohighlight">\(A_k\)</span> and <span class="math notranslate nohighlight">\(B_k\)</span>, <span class="math notranslate nohighlight">\(0\le k\le m-1\)</span> can be computed with <span class="math notranslate nohighlight">\(f(m)\)</span> operations each, then</p>
+<div class="math notranslate nohighlight">
+\[
+   f(n) =  f(2m) = 2 f(m) + 4m
+\]</div>
+<p>The second term includes <span class="math notranslate nohighlight">\(2m\)</span> multiplications and <span class="math notranslate nohighlight">\(2m\)</span> additions in <a class="reference internal" href="#equation-eq-ck2">(10)</a>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{aligned}
+        f(n)&amp; = 2f(\frac{n}{2}) + 2n \\
+&amp;= 4f(\frac{n}{4}) + 2 n + 2n \\ 
+&amp;=\dots \\
+&amp;= n f(1) + \underbrace{2n + \dots + 2n}_{\log_2 n \text{ times}} = 2n \log_2 n.
+    \end{aligned}
+\end{split}\]</div>
+<p>since <span class="math notranslate nohighlight">\(f(1) = 0\)</span>, no computation is needed in this case.  The <span class="math notranslate nohighlight">\(\texttt{fft}\)</span> is usually a standard routine in modern scientific computing software.</p>
+</section>
+<section id="interpolation-error-of-trigonometric-polynomial">
+<h3>Interpolation Error of Trigonometric Polynomial<a class="headerlink" href="#interpolation-error-of-trigonometric-polynomial" title="Permalink to this headline">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(L^2\)</span> error estimate will be discussed at a later point. In this part, we only focus on the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> error estimate.</p>
+<div class="proof theorem admonition" id="theorem-27">
+<p class="admonition-title"><span class="caption-number">Theorem 11 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f\in C^2(\mathbb{R})\)</span> is a <span class="math notranslate nohighlight">\(2\pi\)</span>-period function, then the trigonometric interpolation polynomial with <span class="math notranslate nohighlight">\(2n+1\)</span> equally spaced nodes converges uniformly as the number of nodes tends to infinity.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Since <span class="math notranslate nohighlight">\(f\)</span> is continuously differentiable, its Fourier series converges to <span class="math notranslate nohighlight">\(f\)</span> uniformly. Let <span class="math notranslate nohighlight">\(f(x), g(x)\)</span> be</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \sum_{s = -\infty}^{\infty} \gamma_s e^{is x},\quad g(x) = \sum_{s = -n}^n \gamma_s e^{is x},
+\]</div>
+<p>respectively and denote <span class="math notranslate nohighlight">\(h(x) = f(x)- g(x) = \sum_{|s| &gt; n} \gamma_s e^{isx}\)</span> the reminder. Use integration by parts twice,</p>
+<div class="math notranslate nohighlight">
+\[
+\gamma_s = \frac{1}{2\pi}\int_{0}^{2\pi} f(x) e^{-isx} dx = -\frac{1}{2\pi}\frac{1}{s^2}\int_{0}^{2\pi} f''(x) e^{-isx} dx \le \frac{1}{2\pi s^2}\|f''\|_{\infty}.
+\]</div>
+<p>On the other hand, the interpolation polynomial</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    f_n(x)&amp; = \sum_{m=-n}^n \left(\frac{1}{2n+1}\sum_{j=0}^{2n} y_j e^{-im x_j}\right) e^{im x}  \\
+        &amp;=\sum_{m=-n}^n \left(\frac{1}{2n+1}\sum_{j=0}^{2n} ( g(x_j) + h(x_j) ) e^{-im x_j}\right) e^{im x} \\
+        &amp;= \sum_{m=-n}^n \left(\frac{1}{2n+1}\sum_{j=0}^{2n} ( \sum_{s = -n}^n \gamma_s  e^{is x_j }+ h(x_j) ) e^{-im x_j}\right) e^{im x} \\
+        &amp;=g(x)+ \sum_{m=-n}^n \left(\frac{1}{2n+1}\sum_{j=0}^{2n} h(x_j) e^{-im x_j}\right)e^{im x} \\
+        &amp;=g(x)+ \frac{1}{2n+1} \sum_{j=0}^{2n} h(x_j) \frac{\sin((2n+1)(x-x_j)/2)}{\sin((x-x_j)/2)}
+\end{aligned}
+\end{split}\]</div>
+<p>Therefore</p>
+<div class="math notranslate nohighlight" id="equation-eq-diff">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-diff" title="Permalink to this equation">#</a></span>\[        |f - f_n| \le \|h\|_{\infty} + \|h\|_{\infty}  \frac{1}{2n+1} \sum_{j=0}^{2n} \left|\frac{\sin((2n+1)(x-x_j)/2)}{\sin((x-x_j)/2)}\right|.\]</div>
+<p>It is simple to derive <span class="math notranslate nohighlight">\(\|h\|_{\infty} \le \sum_{|s|&gt;n}|\gamma_s| \le \frac{1}{n\pi}\|f''\|_{\infty}\)</span>. We only need to estimate</p>
+<div class="math notranslate nohighlight">
+\[ 
+\sum_{j=0}^{2n} \left|\frac{\sin((2n+1)(x-x_j)/2)}{\sin((x-x_j)/2)}\right|
+\]</div>
+<p>Separate the nodes into two groups: The first group with <span class="math notranslate nohighlight">\(|x - x_j| &lt; \frac{2\pi}{2n+1}\)</span>, the absolute value is bounded by <span class="math notranslate nohighlight">\((2n+1)\)</span>, there are at most <span class="math notranslate nohighlight">\(3\)</span> nodes lying in this region, thus the contribution is at most <span class="math notranslate nohighlight">\(\cO(n)\)</span>. The second group is <span class="math notranslate nohighlight">\(\pi\ge |x - x_j| \ge \frac{2\pi}{2n+1}\)</span>, while the rest is symmetric, then one can estimate</p>
+<div class="math notranslate nohighlight">
+\[
+\left|\frac{\sin((2n+1)(x-x_j)/2)}{\sin((x-x_j)/2)}\right| \le \frac{\pi}{|x - x_j|}
+\]</div>
+<p>where the inequality <span class="math notranslate nohighlight">\(\sin x \ge \frac{2}{\pi}x\)</span> for <span class="math notranslate nohighlight">\(0\le x\le \frac{\pi}{2}\)</span>, then this part will be at most <span class="math notranslate nohighlight">\(\cO(n\log n)\)</span>, the total contribution is bounded by <span class="math notranslate nohighlight">\(\cO(n\log n)\)</span>. Then <a class="reference internal" href="#equation-eq-diff">(12)</a> can be bounded by</p>
+<div class="math notranslate nohighlight">
+\[
+    |f - f_n|\le \|f''\|_{\infty} \cO\left(\frac{\log n}{n}\right)\to 0,\quad \text{as } n\to \infty.
+\]</div>
+</div>
+<p>The above result can be extended to the case of Hölder continuous function, see the work of Dunham Jackson (1913).</p>
+</section>
+</section>
+<section id="spline-interpolation">
+<h2>Spline Interpolation<a class="headerlink" href="#spline-interpolation" title="Permalink to this headline">#</a></h2>
+<p>It has been seen that increasing the number of interpolation nodes will not always help to improve the approximation. The spline interpolation is to conquer this issue by using the piecewise low-degree polynomials.</p>
 </section>
 </section>
 
@@ -873,6 +1169,13 @@ f[x_j, \dots, x_{j+k}] = \frac{1}{k!}f^{(k)}(\xi)
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Floating Point Arithmetic</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="CompInverseProblems.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Computational Inverse Problems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
